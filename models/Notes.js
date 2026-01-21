@@ -1,13 +1,22 @@
-import { Schema, model } from "mongoose";
-import bcrypt from "bcrypt";
+const { Schema, model } = require('mongoose');
  
-const notesSchema = new Schema({
-    user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+// This is the model you will be modifying
+const noteSchema = new Schema({
+  title: {
+    type: String,
     required: true,
-  }
+    trim: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
  
-const Note = model("Note", notesSchema);
-export default Note;
+const Note = model('Note', noteSchema);
+ 
+module.exports = Note;
